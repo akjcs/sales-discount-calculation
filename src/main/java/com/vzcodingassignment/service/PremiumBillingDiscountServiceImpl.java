@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 /**
  * @author amitkumar.jha
- *
  */
 public class PremiumBillingDiscountServiceImpl implements BillingDiscountService {
     @Override
@@ -21,7 +20,6 @@ public class PremiumBillingDiscountServiceImpl implements BillingDiscountService
 
     public double getBillAfterDiscountCalculation(double purchaseAmount) {
         {
-
             if (purchaseAmount > PremiumUserSlab.SLAB1.getMinValue()
                     && purchaseAmount <= PremiumUserSlab.SLAB1.getMaxValue())
                 return purchaseAmount - (purchaseAmount * PremiumUserSlab.SLAB1.getDiscount());

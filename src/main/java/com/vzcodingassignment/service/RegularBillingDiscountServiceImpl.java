@@ -4,7 +4,6 @@ import com.vzcodingassignment.constant.RegularUserSlab;
 
 /**
  * @author amitkumar.jha
- *
  */
 public class RegularBillingDiscountServiceImpl implements BillingDiscountService {
     @Override
