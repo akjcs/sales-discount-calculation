@@ -18,12 +18,12 @@ Code coverage is close to 95%
 
 ## How to run application
 
-Through these two test class,run class with junit,also main method is defined to run the application 
+Through these two test class,run class with junit also main method is defined to run the application 
 
 * Test class PremiumBillingDiscountServiceImplTest 
 * Test class RegularBillingDiscountServiceImplTest
 
-these two class covered all the user case written into the problem statement
+these two class covered all the use cases written into the problem statement
 
 
 

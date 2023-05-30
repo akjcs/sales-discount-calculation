@@ -23,15 +23,21 @@ public class PremiumBillingDiscountServiceImplTest {
         assertEquals(3600, Integer.parseInt(FormatNumber.formatDecimalValue(billingDiscountService.discountCalculation(4000))));
     }
 
-    //input customer type - premium,premium : 12000,o/p -10200
+    //input customer type - premium,premium : 8000,o/p -7000
     @Test
     public void testDiscountCalculationWithTestCase3(){
+        assertEquals(7000, Integer.parseInt(FormatNumber.formatDecimalValue(billingDiscountService.discountCalculation(8000))));
+    }
+
+    //input customer type - premium,premium : 12000,o/p -10200
+    @Test
+    public void testDiscountCalculationWithTestCase4(){
         assertEquals(10200, Integer.parseInt(FormatNumber.formatDecimalValue(billingDiscountService.discountCalculation(12000))));
     }
 
     //input customer type - premium,premium : 20000,o/p -15800
     @Test
-    public void testDiscountCalculationWithTestCase4(){
+    public void testDiscountCalculationWithTestCase5(){
         assertEquals(15800, Integer.parseInt(FormatNumber.formatDecimalValue(billingDiscountService.discountCalculation(20000))));
     }
 }
