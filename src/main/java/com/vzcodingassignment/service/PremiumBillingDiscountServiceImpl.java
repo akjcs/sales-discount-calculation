@@ -1,59 +1,55 @@
 package com.vzcodingassignment.service;
 
-import com.vzcodingassignment.constant.PremiumUserSlab;
-import org.springframework.stereotype.Service;
+import com.vzcodingassignment.constant.ApplicationConstant;
+import com.vzcodingassignment.response.UserBillingResponse;
+import com.vzcodingassignment.util.FormatNumber;
+import org.springframework.stereotype.Component;
 
 /**
  * @author amitkumar.jha
  */
+@Component("premiumBillingService")
 public class PremiumBillingDiscountServiceImpl implements BillingDiscountService {
-    @Override
-    public double discountCalculation(double purchaseAmount) {
-        if (purchaseAmount <= 0)
-            return 0;
-        else if (PremiumUserSlab.SLAB1.getDiscount() > 100 || PremiumUserSlab.SLAB2.getDiscount() > 100 || PremiumUserSlab.SLAB3.getDiscount() > 100
-                || PremiumUserSlab.SLAB4.getDiscount() > 100)
-            throw new RuntimeException("Ohh!! Sorry,please provide a correct discount value ");
-        return getBillAfterDiscountCalculation(purchaseAmount);
 
+
+
+
+    @Override
+    public UserBillingResponse discountCalculation(double purchaseAmount) {
+        UserBillingResponse userBillingResponse = new UserBillingResponse();
+        if (purchaseAmount <= 0)
+            throw new IllegalStateException("purchase amount is not a valid input");
+        var billAmount = FormatNumber.formatDecimalValue(discountSlabCalculation(purchaseAmount));
+        userBillingResponse.setBillAmount(billAmount);
+        return userBillingResponse;
     }
 
-    public double getBillAfterDiscountCalculation(double purchaseAmount) {
-        {
-            if (purchaseAmount > PremiumUserSlab.SLAB1.getMinValue()
-                    && purchaseAmount <= PremiumUserSlab.SLAB1.getMaxValue())
-                return purchaseAmount - (purchaseAmount * PremiumUserSlab.SLAB1.getDiscount());
-            else if (purchaseAmount > PremiumUserSlab.SLAB2.getMinValue()
-                    && purchaseAmount <= PremiumUserSlab.SLAB2.getMaxValue()) {
-                double discountSlab1 = (PremiumUserSlab.SLAB2.getMinValue() - PremiumUserSlab.SLAB1.getMinValue())
-                        * PremiumUserSlab.SLAB1.getDiscount();
-                double discountSlab2 = (purchaseAmount - PremiumUserSlab.SLAB2.getMinValue())
-                        * PremiumUserSlab.SLAB2.getDiscount();
-                return purchaseAmount - (discountSlab1 + discountSlab2);
-            } else if (purchaseAmount > PremiumUserSlab.SLAB3.getMinValue()
-                    && purchaseAmount <= PremiumUserSlab.SLAB3.getMaxValue()) {
-                double discountSlab1 = (PremiumUserSlab.SLAB2.getMinValue() - PremiumUserSlab.SLAB1.getMinValue())
-                        * PremiumUserSlab.SLAB1.getDiscount();
-                double discountSlab2 = (purchaseAmount - PremiumUserSlab.SLAB2.getMaxValue())
-                        * PremiumUserSlab.SLAB3.getDiscount();
-                double discountSlab3 = (PremiumUserSlab.SLAB3.getMinValue() - PremiumUserSlab.SLAB2.getMinValue())
-                        * PremiumUserSlab.SLAB2.getDiscount();
-                return purchaseAmount - (discountSlab1 + discountSlab2 + discountSlab3);
-            } else if (purchaseAmount > PremiumUserSlab.SLAB4.getMinValue()) {
-                double discountSlab1 = (PremiumUserSlab.SLAB2.getMinValue() - PremiumUserSlab.SLAB1.getMinValue())
-                        * PremiumUserSlab.SLAB1.getDiscount();
-                double discountSlab2 = (PremiumUserSlab.SLAB3.getMinValue() - PremiumUserSlab.SLAB2.getMinValue())
-                        * PremiumUserSlab.SLAB2.getDiscount();
-                double discountSlab3 = (PremiumUserSlab.SLAB4.getMinValue() - PremiumUserSlab.SLAB3.getMinValue())
-                        * PremiumUserSlab.SLAB3.getDiscount();
-                double discountSlab4 = (purchaseAmount - PremiumUserSlab.SLAB4.getMinValue())
-                        * PremiumUserSlab.SLAB4.getDiscount();
-                return purchaseAmount - (discountSlab1 + discountSlab2 + discountSlab3 + discountSlab4);
-            }
-
-            return 0;
+    protected double discountSlabCalculation(double purchaseAmount) {
+        double disCountSlab1=0;
+        double disCountSlab2=0;
+        double disCountSlab3=0;
+        double disCountSlab4=0;
+         if (purchaseAmount >= 0 && ApplicationConstant.slabRange1 >= purchaseAmount) {
+            disCountSlab1 = purchaseAmount * 0.1;
+            return purchaseAmount -disCountSlab1;
+        } else if (purchaseAmount > ApplicationConstant.slabRange1 &&
+                 purchaseAmount <= ApplicationConstant.slabRange2) {
+            disCountSlab1 =  ApplicationConstant.slabRange1 * 0.1;
+            disCountSlab2 = (purchaseAmount - ApplicationConstant.slabRange1) * 0.15;
+            return purchaseAmount - (disCountSlab1 + disCountSlab2);
+        } else if (purchaseAmount > ApplicationConstant.slabRange2 && purchaseAmount <= ApplicationConstant.slabRange3) {
+            disCountSlab1 = ApplicationConstant.slabRange1 * 0.1;
+            disCountSlab2 = ApplicationConstant.slabRange1 * 0.15;
+            disCountSlab3 = (purchaseAmount - ApplicationConstant.slabRange2) * 0.2;
+            return purchaseAmount - (disCountSlab1 + disCountSlab2 + disCountSlab3);
+        } else if (purchaseAmount > ApplicationConstant.slabRange3) {
+            disCountSlab1 = ApplicationConstant.slabRange1 * 0.1;
+            disCountSlab2 = ApplicationConstant.slabRange1 * 0.15;
+            disCountSlab3 = ApplicationConstant.slabRange1 * 0.2;
+            disCountSlab4 = (purchaseAmount - ApplicationConstant.slabRange3) * 0.3;
+            return purchaseAmount - (disCountSlab1 + disCountSlab2 + disCountSlab3 + disCountSlab4);
         }
-
+        return purchaseAmount;
     }
 }
 

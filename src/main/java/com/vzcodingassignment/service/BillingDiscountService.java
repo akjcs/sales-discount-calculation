@@ -1,10 +1,12 @@
 package com.vzcodingassignment.service;
 
+import com.vzcodingassignment.response.UserBillingResponse;
+
 /**
  * @author amitkumar.jha
  *
  */
 @FunctionalInterface
 public interface BillingDiscountService {
-    double discountCalculation(double purchaseAmount);
+    UserBillingResponse discountCalculation(double purchaseAmount);
 }

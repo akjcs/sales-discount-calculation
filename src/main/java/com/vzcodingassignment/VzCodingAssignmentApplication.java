@@ -16,14 +16,14 @@ public class VzCodingAssignmentApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(VzCodingAssignmentApplication.class, args);
-		String customerType = "Premium";
+		/*String customerType = "Premium";
 		BillingDiscountService billingDiscountService = null;
 		if (customerType.equalsIgnoreCase(CustomerType.PREMIUM.getCustomerType())) {
 			billingDiscountService = new PremiumBillingDiscountServiceImpl();
 		} else {
 			billingDiscountService = new RegularBillingDiscountServiceImpl();
 		}
-		System.out.print(billingDiscountService.discountCalculation(4000));
+		System.out.print(billingDiscountService.discountCalculation(4000));*/
 	}
 
 }
