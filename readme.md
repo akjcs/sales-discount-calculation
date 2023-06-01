@@ -37,11 +37,8 @@ Code coverage is close to 95%
     "errorMessage": "Please enter a valid customer type"
  }
 
+Also test through junit test class
 
-Through these two test class,run class with junit also main method is defined to run the application 
-
-* Test class PremiumBillingDiscountServiceImplTest 
-* Test class RegularBillingDiscountServiceImplTest
 
 these two class covered all the use cases written into the problem statement
 
