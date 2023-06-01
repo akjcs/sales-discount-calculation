@@ -1,4 +1,4 @@
-package com;
+package com.vzcodingassignment;
 
 import org.junit.jupiter.api.Test;
 

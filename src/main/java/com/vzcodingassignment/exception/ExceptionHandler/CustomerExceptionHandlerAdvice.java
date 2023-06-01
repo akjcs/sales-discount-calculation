@@ -1,7 +1,6 @@
 package com.vzcodingassignment.exception.ExceptionHandler;
 
 import com.vzcodingassignment.exception.IllegalStateException;
-import com.vzcodingassignment.exception.UserBadRequestException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -24,7 +23,7 @@ public class CustomerExceptionHandlerAdvice {
         return errorMap;
     }
 
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(IllegalStateException.class)
     public Map<String, String> handleBusinessException(IllegalStateException ex) {
         Map<String, String> errorMap = new HashMap<>();

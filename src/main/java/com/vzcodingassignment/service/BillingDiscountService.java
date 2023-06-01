@@ -4,9 +4,8 @@ import com.vzcodingassignment.response.UserBillingResponse;
 
 /**
  * @author amitkumar.jha
- *
  */
 @FunctionalInterface
 public interface BillingDiscountService {
-    UserBillingResponse discountCalculation(double purchaseAmount);
+    UserBillingResponse discountCalculation(String customerType, double purchaseAmount);
 }

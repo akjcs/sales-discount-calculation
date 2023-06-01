@@ -1,34 +1,31 @@
 package com.vzcodingassignment.constant;
 
+import com.vzcodingassignment.exception.IllegalStateException;
+
 public enum RegularUserSlab {
 	SLAB1(0, 5000, 0.0f),
 	SLAB2(5000, 10000, 0.1f),
 	SLAB3(10000, Integer.MAX_VALUE, 0.2f);
 
-	private final int minValue;
-	private final int maxValue;
-	private final float discount;
+	private final double minValue;
+	private final double maxValue;
+	private final double discount;
 
-
-	RegularUserSlab(int minValue, int maxValue, float discount) {
+	RegularUserSlab(final double minValue, final double maxValue, final double discount) {
 		this.minValue = minValue;
 		this.maxValue = maxValue;
 		this.discount = discount;
 	}
 
-
-	public int getMinValue() {
-		return minValue;
+	public double getMinValue() {
+		return this.minValue;
 	}
 
-
-	public int getMaxValue() {
-		return maxValue;
+	public double getMaxValue() {
+		return this.maxValue;
 	}
 
-
-	public float getDiscount() {
-		return discount;
+	public double getDiscount() {
+		return this.discount;
 	}
-
 }

@@ -11,9 +11,9 @@ public enum PremiumUserSlab {
 	SLAB3(8000, 12000, 0.2f),
 	SLAB4(12000, Integer.MAX_VALUE, 0.3f);
 
-	private final int minValue;
-	private final int maxValue;
-	private final float discount;
+	private final double minValue;
+	private final double maxValue;
+	private final double discount;
 
 
 	PremiumUserSlab(int minValue, int maxValue, float discount) {
@@ -24,19 +24,15 @@ public enum PremiumUserSlab {
 	}
 
 
-	public int getMinValue() {
-		return minValue;
+	public double getMinValue() {
+		return this.minValue;
 	}
 
-
-	public int getMaxValue() {
-		return maxValue;
+	public double getMaxValue() {
+		return this.maxValue;
 	}
 
-
-	public float getDiscount() {
-		return discount;
+	public double getDiscount() {
+		return this.discount;
 	}
-
-
 }

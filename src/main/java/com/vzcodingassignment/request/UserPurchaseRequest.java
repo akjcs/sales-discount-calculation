@@ -15,4 +15,9 @@ public class UserPurchaseRequest {
     @Min(value = 0,message = "purchase amount can't be negative value ")
     @JsonProperty("purchase-amount")
     private double purchaseAmount;
+
+    public UserPurchaseRequest(final String customerType, final double purchaseAmount) {
+        this.customerType = customerType;
+        this.purchaseAmount = purchaseAmount;
+    }
 }
