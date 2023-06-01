@@ -18,6 +18,26 @@ Code coverage is close to 95%
 
 ## How to run application
 
+* API end point POST(http://localhost:8080/bill-calculation)
+*  Request Payload
+    {
+    "customer-type":"premium",
+    "purchase-amount":4000
+    }
+ * Response payload 
+  {
+    "bill-amount": "3600"
+  }
+  or
+  {
+    "customer-type":"pppp",
+    "purchase-amount":4000
+    }
+  {
+    "errorMessage": "Please enter a valid customer type"
+ }
+
+
 Through these two test class,run class with junit also main method is defined to run the application 
 
 * Test class PremiumBillingDiscountServiceImplTest 
